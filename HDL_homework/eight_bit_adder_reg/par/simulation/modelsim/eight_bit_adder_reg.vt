@@ -1,0 +1,39 @@
+`timescale 1 ns/ 1 ns
+module eight_bit_adder_reg_vlg_tst();
+reg cn1;
+reg [7:0] in1;
+reg [7:0] in2;
+reg sys_clk;
+reg sys_rst_n;                                            
+wire [8:0]  results;
+
+// assign statements (if any)                          
+eight_bit_adder_reg i1 (
+// port map - connection between master ports and signals/registers   
+	.cn1(cn1),
+	.in1(in1),
+	.in2(in2),
+	.results(results),
+	.sys_clk(sys_clk),
+	.sys_rst_n(sys_rst_n)
+);
+initial                                                
+begin 
+	sys_clk=0;
+	sys_rst_n=0;
+	in1=8'h02;
+	in2=8'h04;
+	cn1=0;
+	#10 sys_rst_n=1;
+	
+	#1000 sys_clk=0;
+	sys_rst_n=0;
+	in1=8'h03;
+	in2=8'h0f;
+	cn1=0;
+	#10 sys_rst_n=1;
+end                                                    
+always  #10 sys_clk=~sys_clk;                                              
+                      
+endmodule
+

@@ -1,0 +1,22 @@
+`timescale 1 ns/ 1 ns
+module adder_flex_vlg_tst();
+reg clk;
+reg in1;
+reg rst;                                            
+wire out1;                     
+adder_flex i1 ( 
+	.clk(clk),
+	.in1(in1),
+	.out1(out1),
+	.rst(rst)
+);
+initial                                                
+begin                                                  
+	rst=0;
+	clk=0;
+	#10 rst=1;
+	#1000 $stop;
+end                                                    
+always   #10 clk=~clk;                                                   
+endmodule
+

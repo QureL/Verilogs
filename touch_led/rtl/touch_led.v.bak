@@ -1,0 +1,26 @@
+module touch_led(
+	input clk,
+	input rst_n,
+	input touch_key,
+	output reg led
+);
+reg touch_key_d0;
+reg touch_key_d1;
+reg switch;
+
+wire touch_en;
+
+assign touch_en=(~touch_key_d1)&touch_key_d0;
+always @(posedge clk , negedge rst_n)begin 
+	if(!rst_n)
+	begin
+		touch_key_d0<=1'b0;
+		touch_key_d1<=1'b0;
+	end
+	else begin
+		touch_key_d0<=touch_key;
+		touch_key_d1<=touch_key_d0;
+	end
+end 
+
+endmodule

@@ -1,0 +1,33 @@
+`timescale 1 ns/ 1 ns
+module adder_8bit_vlg_tst();
+reg [7:0] a;
+reg [7:0] b;
+reg cin;
+// wires                                               
+wire cout;
+wire [7:0]  sum;
+
+// assign statements (if any)                          
+adder_8bit i1 (
+// port map - connection between master ports and signals/registers   
+	.a(a),
+	.b(b),
+	.cin(cin),
+	.cout(cout),
+	.sum(sum)
+);
+initial                                                
+begin 
+	#10 a=8'b111;
+	#20 b=8'b1;
+	#30 cin=1'b0;
+	#50 $stop;
+                     
+end                                                    
+always                                                 
+                 
+begin                                                  
+                                     
+end                                                    
+endmodule
+

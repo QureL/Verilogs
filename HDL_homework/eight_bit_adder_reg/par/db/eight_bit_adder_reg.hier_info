@@ -1,0 +1,169 @@
+|eight_bit_adder_reg
+sys_clk => enable_2.CLK
+sys_clk => enable.CLK
+sys_clk => cnt[0].CLK
+sys_clk => cnt[1].CLK
+sys_clk => cnt[2].CLK
+sys_clk => cnt[3].CLK
+sys_clk => cnt[4].CLK
+sys_clk => cnt[5].CLK
+sys_clk => cnt[6].CLK
+sys_clk => cnt[7].CLK
+sys_rst_n => enable_2.ACLR
+sys_rst_n => enable.ACLR
+sys_rst_n => cnt[0].PRESET
+sys_rst_n => cnt[1].ACLR
+sys_rst_n => cnt[2].ACLR
+sys_rst_n => cnt[3].ACLR
+sys_rst_n => cnt[4].ACLR
+sys_rst_n => cnt[5].ACLR
+sys_rst_n => cnt[6].ACLR
+sys_rst_n => cnt[7].ACLR
+in1[0] => a.IN1
+in1[1] => a.IN1
+in1[2] => a.IN1
+in1[3] => a.IN1
+in1[4] => a.IN1
+in1[5] => a.IN1
+in1[6] => a.IN1
+in1[7] => a.IN1
+in2[0] => b.IN1
+in2[1] => b.IN1
+in2[2] => b.IN1
+in2[3] => b.IN1
+in2[4] => b.IN1
+in2[5] => b.IN1
+in2[6] => b.IN1
+in2[7] => b.IN1
+cn1 => cn1.IN1
+results[0] << results[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[1] << results[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[2] << results[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[3] << results[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[4] << results[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[5] << results[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[6] << results[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[7] << results[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+results[8] << results[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_0
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_1
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_2
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_3
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_4
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_5
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_6
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|eight_bit_adder_reg|adder_1bit:adder_7
+i1 => cn_out.IN0
+i1 => result.IN1
+i1 => result.IN0
+i2 => cn_out.IN0
+i2 => result.IN1
+i2 => result.IN1
+cn => cn_out.IN1
+cn => cn_out.IN1
+cn => result.IN1
+cn => result.IN1
+result <= result.DB_MAX_OUTPUT_PORT_TYPE
+cn_out <= cn_out.DB_MAX_OUTPUT_PORT_TYPE
+
+

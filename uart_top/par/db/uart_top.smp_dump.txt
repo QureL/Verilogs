@@ -1,0 +1,13 @@
+
+State Machine - |uart_top|uart_recv:u_uart_recv|rx_cnt
+Name rx_cnt.1001 rx_cnt.1000 rx_cnt.0111 rx_cnt.0110 rx_cnt.0101 rx_cnt.0100 rx_cnt.0011 rx_cnt.0010 rx_cnt.0001 rx_cnt.0000 
+rx_cnt.0000 0 0 0 0 0 0 0 0 0 0 
+rx_cnt.0001 0 0 0 0 0 0 0 0 1 1 
+rx_cnt.0010 0 0 0 0 0 0 0 1 0 1 
+rx_cnt.0011 0 0 0 0 0 0 1 0 0 1 
+rx_cnt.0100 0 0 0 0 0 1 0 0 0 1 
+rx_cnt.0101 0 0 0 0 1 0 0 0 0 1 
+rx_cnt.0110 0 0 0 1 0 0 0 0 0 1 
+rx_cnt.0111 0 0 1 0 0 0 0 0 0 1 
+rx_cnt.1000 0 1 0 0 0 0 0 0 0 1 
+rx_cnt.1001 1 0 0 0 0 0 0 0 0 1 

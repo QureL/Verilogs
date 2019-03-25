@@ -1,0 +1,101 @@
+module uart_recv(
+	input sys_clk,
+	input sys_rst_n,
+	input uart_rxd,
+	output reg uart_done,
+	output reg [7:0] uart_data
+);
+parameter  CLK_FREQ = 50000000;                 //系统时钟频率
+parameter  UART_BPS = 9600;                     //串口波特率
+localparam BPS_CNT  = CLK_FREQ/UART_BPS;   		//每一位数据需要的系统时钟数目
+
+reg uart_rxd_d0;
+
+reg        uart_rxd_d1;//用来延时的两个寄存器信号
+reg [15:0] clk_cnt;
+reg [ 3:0] rx_cnt;                              //数据位数寄存器，为8就表示接收了一帧
+reg        rx_flag;                             //接收过程标志信号
+reg [ 7:0] rxdata;    
+
+assign wire start_flag=uart_rxd_d1 & (~uart_rxd_d0);
+
+always @(posedge sys_clk,negedge sys_rst_n)begin 
+	if(!sys_rst_n)begin
+		uart_rxd_d0<=1'b0;
+		uart_rxd_d1 <= 1'b0;  
+	end
+	else begin
+		uart_rxd_d0<=uart_rxd;
+		uart_rxd_d1  <= uart_rxd_d0;
+	end
+end
+always @(posedge sys_clk or negedge sys_rst_n) begin
+	if (!sys_rst_n)                                  
+        rx_flag <= 1'b0;
+	else begin
+		if(start_flag)    //操作计数器，计数器reg=8时，一帧数据接收完成                    
+            rx_flag <= 1'b1;
+        else if((rx_cnt == 4'd9)&&(clk_cnt == BPS_CNT/2))
+            rx_flag <= 1'b0;                   
+        else
+            rx_flag <= rx_flag;
+	end
+
+end 
+always @(posedge sys_clk or negedge sys_rst_n) begin     
+	if (!sys_rst_n) begin                             
+        clk_cnt <= 16'd0;                                  
+        rx_cnt  <= 4'd0;//波特计数器和系统时钟计数器清零
+    end
+	else if(rx_flag)begin
+		if (clk_cnt < BPS_CNT - 1) begin
+                clk_cnt <= clk_cnt + 1'b1;
+                rx_cnt  <= rx_cnt;
+				end
+		
+	end
+	else begin
+			clk_cnt<=16'd0;
+			rx_cnt  <= 4'd0;
+	end
+end
+
+always @(posedge sys_clk or negedge sys_rst_n) begin 
+    if ( !sys_rst_n)  
+        rxdata <= 8'd0;                                     
+    else if(rx_flag)//reg [ 3:0] rx_cnt;/接收数据计数器
+                    //系统处于接收过程
+        if (clk_cnt == BPS_CNT/2) begin         //判断系统时钟计数器计数到数据位中间
+            case ( rx_cnt )
+             4'd1 : rxdata[0] <= uart_rxd_d1;   //寄存数据位最低位
+             4'd2 : rxdata[1] <= uart_rxd_d1;
+             4'd3 : rxdata[2] <= uart_rxd_d1;/*代码顺序执行*/
+             4'd4 : rxdata[3] <= uart_rxd_d1;
+             4'd5 : rxdata[4] <= uart_rxd_d1;
+             4'd6 : rxdata[5] <= uart_rxd_d1;
+             4'd7 : rxdata[6] <= uart_rxd_d1;
+             4'd8 : rxdata[7] <= uart_rxd_d1;   //寄存数据位最高位
+             default:;                                    
+            endcase
+        end
+        else 
+            rxdata <= rxdata;
+    else
+        rxdata <= 8'd0;
+end
+always @(posedge sys_clk or negedge sys_rst_n) begin        
+    if (!sys_rst_n) begin
+        uart_data <= 8'd0;                               
+        uart_done <= 1'b0;
+    end
+    else if(rx_cnt == 4'd9) begin               //接收数据计数器计数到停止位时           
+        uart_data <= rxdata;                    //寄存输出接收到的数据
+        uart_done <= 1'b1;                      //并将接收完成标志位拉高
+    end
+    else begin
+        uart_data <= 8'd0;                                   
+        uart_done <= 1'b0; 
+    end    
+end
+
+endmodule
